@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Dia dos Namorados</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;500&display=swap');
+
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #ffe6f0, #fff1e6);
+      font-family: 'Roboto', sans-serif;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      overflow:hidden;
+      color:#333;
+    }
+    header {
+      text-align:center;
+      margin-bottom:20px;
+    }
+    header h1 {
+      font-family:'Pacifico', cursive;
+      font-size:3em;
+      color:#e60073;
+      text-shadow: 2px 2px #ffe6e6;
+    }
+    header p {
+      font-size:1.2em;
+      margin-top:10px;
+    }
+
+    /* Corações animados */
+    .hearts {
+      position:absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      pointer-events:none;
+      overflow:hidden;
+    }
+    .hearts div {
+      position:absolute;
+      width:20px; height:20px;
+      background-color:#e60073;
+      transform: rotate(45deg);
+      animation: floatUp linear infinite;
+    }
+    .hearts div::before,
+    .hearts div::after {
+      content:"";
+      position:absolute;
+      width:20px; height:20px;
+      background-color:inherit;
+      border-radius:50%;
+    }
+    .hearts div::before { top:-10px; left:0; }
+    .hearts div::after { left:10px; top:0; }
+    @keyframes floatUp {
+      to { transform: translateY(-120vh) rotate(45deg); opacity:0; }
+    }
+
+    /* Conteúdo central */
+    .card {
+      background:#fff;
+      border-radius:15px;
+      padding:30px;
+      width:90%;
+      max-width:500px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      text-align:center;
+      z-index:1;
+    }
+    .card h2 {
+      font-size:2em;
+      margin-bottom:10px;
+      color:#e60073;
+    }
+    .card p {
+      font-size:1.1em;
+      line-height:1.5;
+      margin-bottom:20px;
+    }
+    .card ul {
+      text-align:left;
+      margin:0 auto 20px;
+      max-width:400px;
+    }
+    .card ul li {
+      margin-bottom:8px;
+      padding-left:20px;
+      position:relative;
+    }
+    .card ul li::before {
+      content:"❤️";
+      position:absolute;
+      left:0;
+    }
+    .btn {
+      display:inline-block;
+      padding:12px 25px;
+      font-size:1.1em;
+      color:#fff;
+      background:#e60073;
+      border:none;
+      border-radius:25px;
+      cursor:pointer;
+      transition: background .3s, transform .2s;
+      text-decoration:none;
+    }
+    .btn:hover {
+      background:#cc005f;
+      transform: scale(1.05);
+    }
+
+    @media(max-width:400px){
+      header h1 { font-size:2.5em; }
+      .btn { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts"></div>
+  <header>
+    <h1>Para você, meu amor</h1>
+    <p>Uma mensagem especial só sua 💕</p>
+  </header>
+  <div class="card">
+    <h2>Naty!</h2>
+    <p>Desde o momento em que te conheci, minha vida mudou completamente pra melhor. <br> Coisas que eu amo em você:</p>
+    <ul>
+      <li>Seu sorriso ilumina meu dia</li>
+      <li>Seu jeito sincero me inspira</li>
+      <li>Nossos momentos juntos são inesquecíveis</li>
+      <li>Sua voz que me acalma</li>
+      <li>Sua risada contagiante</li>
+      <li>Seu toque</li>
+      <li>Seu beijo</li>
+      <li>Tudo em voce!!</li>
+    </ul>
+    <p>Você quer ver as memorias?</p>
+    <a href="paginadasfotos.html" class="btn">Vamo ver as memorias!</a>
+  </div>
+
+  <script>
+    // Gera corações com posições e tamanhos aleatórios
+    const heartsContainer = document.querySelector('.hearts');
+    function createHeart() {
+      const heart = document.createElement('div');
+      const size = Math.random() * 20 + 10;
+      heart.style.width = `${size}px`;
+      heart.style.height = `${size}px`;
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
